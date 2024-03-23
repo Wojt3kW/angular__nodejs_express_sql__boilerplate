@@ -1,0 +1,9 @@
+{
+    "htmlhint.documentSelector": [
+        "html",
+        "htm"
+    ],
+    "htmlhint.options": {
+        "doctype-first": false
+    }
+}

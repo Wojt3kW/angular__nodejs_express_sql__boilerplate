@@ -1,0 +1,17 @@
+USE [MyBase]
+GO
+
+CREATE TABLE [dbo].[PhysicalEduMarks](
+	[StudentId] [int] NOT NULL,
+	[Mark] [int] NOT NULL
+ CONSTRAINT [PK_PhysicalEduMarks] PRIMARY KEY CLUSTERED 
+(
+	[StudentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[PhysicalEduMarks]  WITH CHECK
+ADD CONSTRAINT [FK_PhysicalEduMarks_StudentId] FOREIGN KEY([StudentId])
+REFERENCES [dbo].[Students] ([Id])
+GO

@@ -1,0 +1,18 @@
+<p class="m-0 p-0" *ngIf="isEditMode !== true" (click)="toggleEditMode()">
+  {{ student[subject] ?? " &nbsp; " }}
+</p>
+<input
+  *ngIf="isEditMode === true"
+  #input
+  type="number"
+  [value]="student[subject]"
+  class="form-control"
+  min="1"
+  max="6"
+  maxlength="1"
+  (keyup.enter)="onGradeUpdate()"
+  (keyup.esc)="toggleEditMode()"
+  (keyup)="onKeyPress($event)"
+  (keydown)="onKeyPress($event)"
+  (blur)="onBlur()"
+/>

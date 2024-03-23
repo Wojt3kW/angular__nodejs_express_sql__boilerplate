@@ -1,0 +1,177 @@
+<form [formGroup]="formGroup" (submit)="addStudent()">
+  <!-- Form for adding a new student, triggers the "addStudent()" function on submission -->
+  <div class="mb-3 form-group">
+    <label [for]="StudentFormFields.firstName" class="form-label required"
+      >First name</label
+    >
+    <input
+      type="text"
+      class="form-control"
+      [formControlName]="StudentFormFields.firstName"
+      [id]="StudentFormFields.firstName"
+      placeholder="First name"
+      [ngClass]="{
+        'is-invalid': submitted && formControls.firstName.errors,
+        'is-valid': submitted && !formControls.firstName.errors
+      }"
+      required
+      autofocus
+    />
+    <div
+      *ngIf="submitted && formControls.firstName.errors"
+      class="invalid-feedback col"
+    >
+      <ng-container *ngIf="formControls.firstName.errors?.required">
+        First name is required<br />
+      </ng-container>
+      <ng-container *ngIf="formControls.firstName.errors?.maxlength">
+        Entered first name is too long! (maximum
+        {{ formControls.firstName.errors.maxlength.requiredLength }}
+        characters)<br />
+      </ng-container>
+      <ng-container *ngIf="formControls.firstName.errors?.invalidName">
+        First name should start with a capital letter and contain only lowercase
+        Latin letters.<br />
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-3 form-group">
+    <label [for]="StudentFormFields.lastName" class="form-label required"
+      >Last name</label
+    >
+    <input
+      type="text"
+      class="form-control"
+      [formControlName]="StudentFormFields.lastName"
+      [id]="StudentFormFields.lastName"
+      placeholder="Last name"
+      [ngClass]="{
+        'is-invalid': submitted && formControls.lastName.errors,
+        'is-valid': submitted && !formControls.lastName.errors
+      }"
+      required
+    />
+    <div
+      *ngIf="submitted && formControls.lastName.errors"
+      class="invalid-feedback col"
+    >
+      <ng-container *ngIf="formControls.lastName.errors?.required">
+        Last name is required<br />
+      </ng-container>
+      <ng-container *ngIf="formControls.lastName.errors?.maxlength">
+        Entered last name is too long! (maximum
+        {{ formControls.lastName.errors.maxlength.requiredLength }}
+        characters)<br />
+      </ng-container>
+      <ng-container *ngIf="formControls.lastName.errors?.invalidName">
+        Last name should start with a capital letter and contain only lowercase
+        Latin letters.<br />
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label [for]="StudentFormFields.mathMark" class="form-label"
+      >Math mark</label
+    >
+    <input
+      type="number"
+      class="form-control"
+      [formControlName]="StudentFormFields.mathMark"
+      [id]="StudentFormFields.mathMark"
+      placeholder="Math mark"
+      [ngClass]="{
+        'is-invalid': submitted && formControls.mathMark.errors,
+        'is-valid': submitted && !formControls.mathMark.errors
+      }"
+    />
+    <div
+      *ngIf="submitted && formControls.mathMark.errors"
+      class="invalid-feedback col"
+    >
+      <ng-container
+        *ngIf="
+          formControls.mathMark.errors?.min || formControls.mathMark.errors?.max
+        "
+      >
+        Marks should be between 1 and 6.<br />
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label [for]="StudentFormFields.historyMark" class="form-label"
+      >History mark</label
+    >
+    <input
+      type="number"
+      class="form-control"
+      [formControlName]="StudentFormFields.historyMark"
+      [id]="StudentFormFields.historyMark"
+      placeholder="History mark"
+      [ngClass]="{
+        'is-invalid': submitted && formControls.historyMark.errors,
+        'is-valid': submitted && !formControls.historyMark.errors
+      }"
+    />
+    <div
+      *ngIf="submitted && formControls.historyMark.errors"
+      class="invalid-feedback col"
+    >
+      <ng-container
+        *ngIf="
+          formControls.historyMark.errors?.min ||
+          formControls.historyMark.errors?.max
+        "
+      >
+        Marks should be between 1 and 6.<br />
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label [for]="StudentFormFields.physicalEduMark" class="form-label"
+      >Physical education mark</label
+    >
+    <input
+      type="number"
+      class="form-control"
+      [formControlName]="StudentFormFields.physicalEduMark"
+      [id]="StudentFormFields.physicalEduMark"
+      placeholder="Physical education mark"
+      [ngClass]="{
+        'is-invalid': submitted && formControls.physicalEduMark.errors,
+        'is-valid': submitted && !formControls.physicalEduMark.errors
+      }"
+    />
+    <div
+      *ngIf="submitted && formControls.physicalEduMark.errors"
+      class="invalid-feedback col"
+    >
+      <ng-container
+        *ngIf="
+          formControls.physicalEduMark.errors?.min ||
+          formControls.physicalEduMark.errors?.max
+        "
+      >
+        Marks should be between 1 and 6.<br />
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-end">
+      <button type="submit" class="btn btn-primary me-2">Add</button>
+      <button
+        type="button"
+        id="btn-close"
+        class="btn btn-secondary"
+        data-bs-dismiss="modal"
+        (click)="submitted = false"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

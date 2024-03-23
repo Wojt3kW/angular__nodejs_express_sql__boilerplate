@@ -1,0 +1,71 @@
+<div class="row mt-1">
+  <div class="col-auto me-auto align-self-start">
+    <h1>Students</h1>
+  </div>
+  <div class="col-auto align-self-center">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#addStudentModalDlg"
+    >
+      <fa-icon [icon]="faAdd"></fa-icon>
+      Add student
+    </button>
+    <!-- Button to add a new student, triggers the "openAddStudentForm()" function -->
+  </div>
+</div>
+
+<ng-container *ngIf="(students?.length ?? 0) > 0">
+  <table
+    class="table table-striped table-bordered table-hover align-middle table-sm"
+  >
+    <thead class="thead-dark">
+      <tr>
+        <th class="col">Name</th>
+        <th class="col col-2 text-center">Math</th>
+        <th class="col col-2 text-center">History</th>
+        <th class="col col-2 text-center">Physical education</th>
+        <th class="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td class="col">{{ student.fullName }}</td>
+        <td class="col col-2 text-center py-0 px-1 m-0">
+          <app-student-mark
+            [student]="student"
+            [subject]="StudentSubject.Math"
+          ></app-student-mark>
+        </td>
+        <td class="col col-2 text-center py-0 px-1 m-0">
+          <app-student-mark
+            [student]="student"
+            [subject]="StudentSubject.History"
+          ></app-student-mark>
+        </td>
+        <td class="col col-2 text-center py-0 px-1 m-0">
+          <app-student-mark
+            [student]="student"
+            [subject]="StudentSubject.PhysicalEducation"
+          ></app-student-mark>
+        </td>
+        <td class="col text-center">
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            (click)="deleteStudent(student)"
+          >
+            <fa-icon [icon]="faTrashCan"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<app-modal-dialog [title]="'Add student'" [id]="'addStudentModalDlg'">
+  <add-student-form-component
+    (studentAdded)="studentAdded($event)"
+  ></add-student-form-component>
+</app-modal-dialog>
